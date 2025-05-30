@@ -109,7 +109,7 @@ body:hover .cursor {
 /* Sección Hero */
 .hero {
     height: 100vh;
-    min-height: 800px;
+    min-height: 800px; /* Asegura una altura mínima */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -312,6 +312,8 @@ body:hover .cursor {
     display: flex;
     align-items: center;
     gap: 50px;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    justify-content: center; /* Centra los elementos cuando se envuelven */
 }
 
 .card-3d {
@@ -385,6 +387,7 @@ body:hover .cursor {
 
 .about-text {
     flex: 1;
+    min-width: 300px; /* Asegura que el texto no se comprima demasiado */
 }
 
 .about-text p {
@@ -395,8 +398,10 @@ body:hover .cursor {
 
 .tech-stack {
     display: flex;
+    flex-wrap: wrap; /* Permite que los iconos se envuelvan */
     gap: 20px;
     margin-top: 30px;
+    justify-content: center; /* Centra los iconos si se envuelven */
 }
 
 .tech-item {
@@ -495,11 +500,15 @@ body:hover .cursor {
     transition: width 1.5s ease-in-out;
 }
 
+/* Ajusta el ancho de las barras según el nivel de habilidad */
 .skill-progress[data-level="95"]::after { width: 95%; }
 .skill-progress[data-level="90"]::after { width: 90%; }
+.skill-progress[data-level="88"]::after { width: 88%; }
 .skill-progress[data-level="85"]::after { width: 85%; }
+.skill-progress[data-level="82"]::after { width: 82%; }
 .skill-progress[data-level="80"]::after { width: 80%; }
 .skill-progress[data-level="75"]::after { width: 75%; }
+
 
 .skill-progress span {
     position: absolute;
@@ -741,11 +750,15 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    flex-wrap: wrap; /* Añadido para que se envuelva en móviles */
+    justify-content: center; /* Centra los elementos al envolverse */
+    text-align: center;
 }
 
 .footer-logo {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px; /* Espacio para móviles */
 }
 
 .footer-logo span:first-child {
@@ -764,6 +777,8 @@ footer {
 .footer-links {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap; /* Asegura que los enlaces también se envuelvan */
+    justify-content: center;
 }
 
 .footer-links a {
@@ -781,4 +796,99 @@ footer {
     padding-top: 20px;
     border-top: 1px solid rgba(136, 146, 176, 0.2);
     color: var(--text-secondary);
-    font-size
+    font-size: 0.9rem;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 3rem;
+    }
+
+    .typewriter {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .floating-nav {
+        right: 10px;
+        top: auto;
+        bottom: 10px;
+        transform: none;
+        width: calc(100% - 20px);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .floating-nav ul {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 0;
+    }
+
+    .floating-nav a {
+        font-size: 1rem;
+    }
+
+    .floating-nav a::after {
+        display: none; /* Ocultar el texto hover en móvil */
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .card-3d {
+        width: 250px;
+        height: 250px;
+    }
+
+    .tech-stack {
+        justify-content: center;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Responsividad para tabletas */
+@media (max-width: 1024px) {
+    .glitch {
+        font-size: 4rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+}
