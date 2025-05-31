@@ -124,6 +124,11 @@ body:hover .cursor {
     z-index: 2;
     padding: 0 20px;
     max-width: 900px;
+    display: flex; /* Añadido para controlar mejor el layout interno */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ocupa el espacio disponible del hero */
 }
 
 .glitch {
@@ -187,11 +192,17 @@ body:hover .cursor {
     color: var(--text-secondary);
     margin-bottom: 40px;
     border-right: 2px solid var(--secondary-color);
-    white-space: normal; /* Cambiado a 'normal' para permitir saltos de línea y que quepa "en Red" */
+    white-space: normal;
     overflow: hidden;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-    max-width: 100%; /* Asegura que no desborde el contenedor */
+    animation: typing 3.5s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+    max-width: 100%;
 }
+
+.typewriter.finished {
+    border-color: transparent; /* Oculta el cursor cuando la animación termina */
+    animation: typing 3.5s steps(40, end) forwards; /* Elimina la animación del blink-caret */
+}
+
 
 @keyframes typing {
     from { width: 0 }
@@ -244,10 +255,8 @@ body:hover .cursor {
 }
 
 .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative; /* Cambiado a relative para que se posicione respecto a hero-content */
+    margin-top: 50px; /* Ajusta este valor para acercar o alejar de los botones */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -257,16 +266,46 @@ body:hover .cursor {
 
 .scroll-line {
     width: 1px;
-    height: 60px;
+    height: 60px; /* La altura final deseada */
     background-color: var(--text-secondary);
-    margin-top: 10px;
     position: relative;
-    animation: scroll-animation 2s infinite;
 }
 
+.scroll-arrow {
+    width: 1px;
+    height: 60px; /* Ajusta la altura si quieres una flecha más larga o corta */
+    background-color: var(--text-secondary);
+    position: relative;
+    animation: scroll-animation 2s infinite; /* Mantener la animación */
+}
+
+/* Pseudo-elementos para crear la forma de flecha */
+.scroll-arrow::before,
+.scroll-arrow::after {
+    content: '';
+    position: absolute;
+    width: 10px; /* Ancho de la punta de la flecha */
+    height: 1px;
+    background-color: var(--text-secondary);
+    bottom: 0;
+    transform-origin: bottom right;
+    transition: var(--transition);
+}
+
+.scroll-arrow::before {
+    left: -4.5px; /* Ajusta para centrar la punta */
+    transform: rotate(45deg);
+}
+
+.scroll-arrow::after {
+    right: -4.5px; /* Ajusta para centrar la punta */
+    transform: rotate(-45deg);
+}
+
+/* Animación de la flecha (similar a la original pero con los pseudo-elementos) */
 @keyframes scroll-animation {
     0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(20px); opacity: 0; } /* Misma longitud de caída */
 }
 
 /* Secciones generales */
