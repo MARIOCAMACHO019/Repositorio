@@ -187,7 +187,7 @@ body:hover .cursor {
     color: var(--text-secondary);
     margin-bottom: 40px;
     border-right: 2px solid var(--secondary-color);
-    white-space: normal; /* Cambiado de 'nowrap' a 'normal' para permitir saltos de línea */
+    white-space: normal; /* Cambiado a 'normal' para permitir saltos de línea y que quepa "en Red" */
     overflow: hidden;
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
     max-width: 100%; /* Asegura que no desborde el contenedor */
@@ -364,6 +364,9 @@ body:hover .cursor {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Asegura que el contenido se ajuste y no desborde */
+    box-sizing: border-box; /* Importante para incluir padding en el ancho/alto */
+    word-wrap: break-word; /* Permite que las palabras largas se rompan */
 }
 
 .card-back h3 {
@@ -374,11 +377,15 @@ body:hover .cursor {
 
 .card-back ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .card-back li {
     margin-bottom: 10px;
     color: var(--text-primary);
+    font-size: 0.95rem; /* Ligeramente más pequeño para asegurar que quepa más texto */
+    line-height: 1.3;
 }
 
 .card-back li strong {
@@ -388,6 +395,7 @@ body:hover .cursor {
 .about-text {
     flex: 1;
     min-width: 300px; /* Asegura que el texto no se comprima demasiado */
+    text-align: center; /* Centra el texto de la sección "Sobre Mí" */
 }
 
 .about-text p {
