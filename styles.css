@@ -187,9 +187,10 @@ body:hover .cursor {
     color: var(--text-secondary);
     margin-bottom: 40px;
     border-right: 2px solid var(--secondary-color);
-    white-space: nowrap;
+    white-space: normal; /* Cambiado de 'nowrap' a 'normal' para permitir saltos de línea */
     overflow: hidden;
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    max-width: 100%; /* Asegura que no desborde el contenedor */
 }
 
 @keyframes typing {
@@ -251,15 +252,14 @@ body:hover .cursor {
     flex-direction: column;
     align-items: center;
     z-index: 2;
-    color: var(--text-secondary); /* Mantener si quieres que el color afecte a la línea aunque no haya texto */
-    /* font-size: 0.8rem; - Eliminado ya que no hay texto "Scroll" */
+    color: var(--text-secondary);
 }
 
 .scroll-line {
     width: 1px;
     height: 60px;
     background-color: var(--text-secondary);
-    margin-top: 10px; /* Mantener para separación con el resto del contenido del hero */
+    margin-top: 10px;
     position: relative;
     animation: scroll-animation 2s infinite;
 }
@@ -806,7 +806,7 @@ footer {
     }
 
     .typewriter {
-        font-size: 1.2rem;
+        font-size: 1.1rem; /* Ligeramente reducido para pantallas muy pequeñas */
     }
 
     .hero-buttons {
